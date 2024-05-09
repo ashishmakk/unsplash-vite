@@ -357,7 +357,7 @@ Search Form
 }
 
 .search-input {
-  border-color: rgb(221, 3, 237);
+  border-color: rgb(206, 206, 206);
   transition: var(--darkModeTransition);
   color: var(--textColor);
   border-radius: 0;
