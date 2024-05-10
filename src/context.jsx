@@ -2,18 +2,22 @@ import { useContext, createContext, useState, useEffect } from "react";
 
 const AppContext = createContext();
 
-const getInitialDarkmode = () => {
-    
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches; 
 
-    const storedDarkMode = localStorage.getItem('darkTheme') === 'true'; 
-
-    return prefersDarkMode || storedDarkMode ; 
+const getInitialDarkMode = () => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedDarkMode = localStorage.getItem('darkTheme');
+ 
+    if (storedDarkMode === null) {
+        return prefersDarkMode;
+    }
+ 
+    return storedDarkMode === 'true';
 };
+
 
 export const AppProvider = ({children}) => {
 
-const [isDarkTheme, setIsDarkTheme] = useState(getInitialDarkmode());
+const [isDarkTheme, setIsDarkTheme] = useState(getInitialDarkMode());
 const [searchTerm, setSearchTerm] = useState('beach');
 
 const toggleTheme = () => {
